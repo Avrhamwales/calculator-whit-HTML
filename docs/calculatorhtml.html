@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calulator</title>
+    <script>
+        num="";
+        nums=[];
+        function numPun (val){
+            console.log('Press a key',val)
+            document.getElementById("view").innerHTML += val;
+            if( typeof (val) == "number"){
+            num+=val;
+        }
+        else{
+            nums.push(parsInt(num));
+            nums.push(val);
+            num="";
+            console.log('end num',num, nums)
+            }
+        }
+        function equals(){
+            if (typeof(val)!="number") {
+                console.error('The mathematical formula does not end with a number');
+            }
+            nums.push(parsInt(num));
+            extent=1;
+            while(extent>0){
+                extent=nums.indexOf(extent,"*")
+                nums[extent-1]*=nums[extent+1];
+                nums.splice(extent,2)
+                console.log('Finish calculating',nums)
+            }
+            extent=1;
+            while(extent>0){
+                extent=nums.indexOf(extent,"/")
+                nums[extent-1]*=nums[extent+1];
+                nums.splice(extent,2)
+                console.log('Finish calculating',nums)
+            }
+            extent=1;
+            while(extent>0){
+                extent=nums.indexOf(extent,"+")
+                nums[extent-1]*=nums[extent+1];
+                nums.splice(extent,2)
+                console.log('Finish calculating',nums)
+            }
+            extent=1;
+            while(extent>0){
+                extent=nums.indexOf(extent,"-")
+                nums[extent-1]*=nums[extent+1];
+                nums.splice(extent,2)
+                console.log('Finish calculating',nums)
+            }            
+        }
+
+    </script>
+</head>
+<body>
+
+    <div>
+        <div id="view">
+           
+        </div>
+
+        <div>
+            <input type="button" onclick="numPun(7)" value="7"></input>
+            <button onclick="numPun(8)" value="8">8</button>
+            <button onclick="numPun(9)"value="9">9</button>
+            <button onclick="numPun('/')"value="/">/</button>
+        </div>
+
+        <div>
+            <button onclick="numPun(4)">4</button>
+            <button onclick="numPun(5)">5</button>
+            <button onclick="numPun(6)">6</button>
+            <button onclick="numPun('*')">*</button>
+        </div>
+
+        <div>
+            <button onclick="numPun(1)">1</button>
+            <button onclick="numPun(2)">2</button>
+            <button onclick="numPun(3)">3</button>
+            <button onclick="numPun('-')">-</button>
+        </div>
+
+        <div>
+            <button onclick="calculate(this.value)">C</button>
+            <button onclick="numPun(0)">0</button>
+            <button onclick="numPun('.')">.</button>
+            <button onclick="equals()">=</button>
+        </div>
+
+    </div>
+    
+</body>
+</html>
